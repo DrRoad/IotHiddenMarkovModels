@@ -1,7 +1,6 @@
 library('HMM')
-library('mhsmm')
 library('Metrics')
-df <- read.csv(file="E:\\iot project\\achaluv.csv", head = FALSE)
+df <- read.csv(file="achaluv_hmm.csv", head = FALSE)
 
 hmm <- initHMM(c('A','B','C'), c(1,2,3,4,5))
 
@@ -9,7 +8,7 @@ train <- df[1:1600,1]
 test <- df[1601:2000,1]
 
 bw = baumWelch(hmm,train,100)
-#print(bw$hmm)
+print(bw$hmm)
 
 
 predict <- simHMM(bw$hmm, 400)
@@ -32,8 +31,8 @@ ssr <- sst-sse
 Rsquared <- ssr/sst
 
 RMSE <- rmse(test, predictObs)
+RMSE
+sse
 
-
-
-
+Rsquared
 
